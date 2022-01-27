@@ -1,5 +1,5 @@
-import "./style.css"
+import './style.css'
 
-const mainContainer = document.querySelector(".main-container");
+// const mainContainer = document.querySelector(".main-container");
 
-let toDo = [];
+// let toDo = [];

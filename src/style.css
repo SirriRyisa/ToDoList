@@ -11,7 +11,6 @@
   margin: 0 auto;
   padding-top: 20px;
   padding-bottom: 150px;
-  /* width: 920px; */
 }
 
 .to-do-container {
@@ -40,7 +39,6 @@ p {
 }
 
 .list-item {
-  /* padding-bottom: 10px; */
   margin-left: 20px;
   margin-top: 5px;
   border-bottom: 1px solid grey;
@@ -65,7 +63,7 @@ input {
 
 .fas {
   display: flex;
-  justify-content:flex-end;
+  justify-content: flex-end;
   margin-right: 40px;
   color: grey;
 }
