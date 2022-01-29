@@ -2,10 +2,8 @@ import './style.css';
 
 // select the Element
 const toDoo = document.querySelector('.add-todo');
-const contentToDo = document.getElementById('lists')
-
+const contentToDo = document.getElementById('lists');
 // classes names
-
 function myToDo(toDo) {
   const item = `
           <li class="list-item">
@@ -14,23 +12,20 @@ function myToDo(toDo) {
            </li>
   `;
   const position = 'beforeend';
-
   contentToDo.insertAdjacentHTML(position, item); 
 }
-
 // add item to list when user hit enter
+toDoo.addEventListener('keyup', (event) => {
+   if(event.keyCode == 13) {
+    const toDo = toDoo.value;
 
-toDoo.addEventListener('keyup', function(event) {
-   if(event.keyCode == 13){
-      const toDo = toDoo.value;
-
-      if(toDo){
-        myToDo(toDo);
-      }
-      toDoo.value = '';
+    if(toDo) {
+      myToDo(toDo);
+    }
+    toDoo.value = '';
    }
  })
 
 myToDo.addEventListener('click', (toDo) => {
-  myToDo.style.textdecoration = 'line-through';
+myToDo.style.textdecoration = 'line-through';
 });
