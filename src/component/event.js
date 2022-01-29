@@ -5,7 +5,7 @@ import {
   getDescriptionInput,
   markCompleted,
   clearMethod,
-} from './index.js';
+} from './src/index.js';
 
 const todoContainer = document.querySelector('.todos-container');
 const form = document.getElementById('form');
