@@ -1,6 +1,6 @@
 import './style.css';
 
-import StorageManager from './component/storageManager';
+import StorageManager from './storageManager';
 
 export const addItem = (value) => {
   let arr;
