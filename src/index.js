@@ -12,20 +12,20 @@ function myToDo(toDo) {
            </li>
   `;
   const position = 'beforeend';
-  contentToDo.insertAdjacentHTML(position, item); 
+  contentToDo.insertAdjacentHTML(position, item);
 }
 // add item to list when user hit enter
 toDoo.addEventListener('keyup', (event) => {
-   if(event.keyCode == 13) {
+  if (event.keyCode === 13) {
     const toDo = toDoo.value;
 
-    if(toDo) {
+    if (toDo) {
       myToDo(toDo);
     }
     toDoo.value = '';
-   }
- })
+  }
+});
 
 myToDo.addEventListener('click', (toDo) => {
-myToDo.style.textdecoration = 'line-through';
+  toDo.style.textdecoration = 'line-through';
 });
