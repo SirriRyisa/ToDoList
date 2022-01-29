@@ -1,33 +1,81 @@
 import './style.css';
 
-// select the Element
-const mainContainer = document.querySelector(".main-container");
-const input = document.getElementById('#sports');
-const label = document.getElementById('#item');
-const clearList = document.querySelector(".clear-list");
-const listItem = document.querySelector('.list-item');
-const addToDo = document.querySelector('.add-todo');
-const contentToDo = document.getElementById('lists')
+import StorageManager from './component/storageManager';
 
-// classes names
+export const addItem = (value) => {
+  let arr;
+  if (StorageManager.getLocStore() == null) {
+    arr = [];
+  } else {
+    arr = StorageManager.getLocStore();
+  }
 
-function myToDo(toDo) {
-  const item = `
-          <li class="list-item">
-            <input type="checkbox" id="sports" name="Sports" value="Sports">
-            <label for="Sports" id="item"> ${toDo}<span><i class="fas fa-ellipsis-v" job="delete" id="0"></i></span></label><br>
-           </li>
-  `;
-  const position = 'beforeend';
+  const length = arr.length + 1;
+  const obj = {
+    description: value,
+    completed: false,
+    index: length,
+  };
+  arr.push(obj);
+  StorageManager.setLocStore(arr);
+  return arr;
+};
 
-  contentToDo.insertAdjacentHTML(position, item);
-}
+export const removeItem = (id) => {
+  let arr = StorageManager.getLocStore();
+  arr = arr.filter((e) => e.index.toString() !== id.toString());
+  arr.forEach((item, index) => {
+    item.index = index + 1;
+  });
+  StorageManager.setLocStore(arr);
+  return id;
+};
 
-myToDo("Learn JavaScript");
+export const updateItem = (value, id) => {
+  const arr = StorageManager.getLocStore();
+  arr[id - 1].description = value.trim();
+  StorageManager.setLocStore(arr);
+};
 
-// document.addEventListener("keyup", function(event) {
-//   if(event.keyboardEvent.keyCode==13) {
+export const getDescriptionInput = (input, id) => {
+  const inputDescription = input;
+  input.addEventListener('blur', () => {
+    updateItem(inputDescription.value, id);
+  });
+};
 
-//   }
-// })
+export const displayToDos = (output) => {
+  const storeManage = StorageManager.getLocStore();
+  output.innerHTML = null;
+  storeManage.forEach((item) => {
+    let checkBox;
+    if (item.completed) {
+      checkBox = 'checked';
+    }
+    output.innerHTML += `<li class="todos">
+        <ul class="todos-01" >
+        <li><input type="checkbox" id="check-${item.index}" class=" toDoItems" ${checkBox}></li>
+        <li><input type='text' value="${item.description}" class="toDoItems tdt inputs" id=${item.index} readOnly></input></li>
+        </ul>
+        <i class="fas fa-ellipsis-v"></i>
+        <i class="fas fa-trash-alt" id="${item.index}"></i>
+    </li>`;
+  });
+};
 
+export const markCompleted = (checkbox, id, todoContainer) => {
+  const arr = StorageManager.getLocStore();
+  arr[id - 1].completed = checkbox.checked;
+  StorageManager.setLocStore(arr);
+  displayToDos(todoContainer);
+};
+
+export const clearMethod = (todoContainer) => {
+  let arr = StorageManager.getLocStore();
+  arr = arr.filter((todo) => todo.completed !== true);
+  arr.forEach((item, index) => {
+    item.index = index + 1;
+  });
+  StorageManager.setLocStore(arr);
+  displayToDos(todoContainer);
+};

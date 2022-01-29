@@ -9,17 +9,19 @@
   <title>Document</title>
 </head>
 <body>
-   <main class="main-container">
-     <div class="to-do-container">
-       <h3>Today's To Do <span><i class="fas fa-sync-alt"></i></span></h3><hr>
-       <input type="text" class="add-todo" placeholder="Add to your list..."><span class="enter"><i class="fas fa-sign-in-alt"></i></span><br><hr>
-        <ul id="lists">
-          <!-- Dynamic rendering -->
-          </ul>
-       </div>
-       <div class="clear-list">Clear all completed</div>
+  <section>
+      <div class="section_header widthHeight">
+          <h2 class="title">Today's To Do</h2>
+          <i class="fas fa-sync"></i>
       </div>
-   </main>
-   <script src="index.js"></script>
+      <form id="form" class="input widthHeight">
+          <input type="text" id="to-do-name" class="toDoName" placeholder="Add to your list...">
+          <button type="submit"><i class="fas fa-plus"></i></button>
+      </form>
+      <ul class="todos-container">
+          <!-- Todo List --> 
+      </ul>
+      <button type="button" class="clear-completed widthHeight">Clear all completed</button>
+  </section>
 </body>
 </html>
